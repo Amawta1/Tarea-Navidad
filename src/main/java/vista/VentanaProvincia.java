@@ -22,6 +22,21 @@ public class VentanaProvincia extends javax.swing.JFrame {
     public VentanaProvincia() {
         initComponents();
     }
+    public void ActualizarTabla() {
+        var header = new String[]{"Nombre", "Cedula","NroHabitantes", "Pais", "Codigo"};
+        var data = new Object[this.provinciaControl.listar().size()][7];
+        for (var i = 0; i < this.provinciaControl.listar().size(); i++) {
+            data[i][0] = this.provinciaControl.listar().get(i).getNombre();
+            data[i][1] = this.provinciaControl.listar().get(i).getCedula();
+            data[i][2] = Integer.toString((int) this.provinciaControl.listar().get(i).getNroHabitantes());
+            data[i][3] = this.provinciaControl.listar().get(i).getPais().getNombre();
+            data[i][4] = Integer.toString(this.provinciaControl.listar().get(i).getCodigo());
+
+        }
+
+        this.tableModel = new DefaultTableModel(data, header);
+        this.jTable1.setModel(this.tableModel);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -409,7 +424,4 @@ public class VentanaProvincia extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 
-    private void ActualizarTabla() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

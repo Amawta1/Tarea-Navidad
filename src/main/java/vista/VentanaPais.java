@@ -98,6 +98,23 @@ public class VentanaPais extends javax.swing.JFrame {
         this.jComboBox3.addItem("31");
 
     }
+    public void ActualizarTabla() {
+        var header = new String[]{"continente", "Pais", "Presidente","Capital","Descubrimiento",  "Codigo"};
+        var data = new Object[this.paisControl.listar().size()][6];
+        for (var i = 0; i < this.paisControl.listar().size(); i++) {
+            data[i][0] = this.paisControl.listar().get(i).getContinente();
+            data[i][1] = this.paisControl.listar().get(i).getPais();
+            data[i][1] = this.paisControl.listar().get(i).getPresidente();
+            data[i][1] = this.paisControl.listar().get(i).getCapital();
+            data[i][2] = Integer.toString(this.paisControl.listar().get(i).getYearDescubrimiento().getYear()) + "-" + Integer.toString(this.paisControl.listar().get(i).getYearDescubrimiento().getMonthValue()) + "-" + Integer.toString(this.paisControl.listar().get(i).getYearDescubrimiento().getDayOfMonth());
+            data[i][5] = Integer.toString(this.paisControl.listar().get(i).getCodigo());
+
+        }
+
+        this.tableModel = new DefaultTableModel(data, header);
+        this.jTable2.setModel(this.tableModel);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -568,7 +585,4 @@ public class VentanaPais extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 
-    private void ActualizarTabla() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
